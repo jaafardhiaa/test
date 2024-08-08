@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>صفحة الهبوط</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  header {
+    background: linear-gradient(45deg, #000000, #434343);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: relative; /* Position for pseudo elements */
+  }
+  header::before, header::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+  header::before {
+    background: radial-gradient(circle closest-side, rgba(255,255,255,0.1), transparent); /* White radial gradient */
+    mix-blend-mode: overlay; /* Blend mode for overlay effect */
+  }
+  header::after {
+    background: linear-gradient(rgba(0,0,0,0.3), transparent); /* Black linear gradient */
+    mix-blend-mode: overlay; /* Blend mode for overlay effect */
+  }
+  header img {
+    width: 300px; /* Larger size for the logo */
+    height: 300px; /* Making it a square */
+    border-radius: 15px; /* Slightly rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Shadow for a 3D effect */
+    padding: 10px; /* Padding around the logo */
+    position: relative; /* Adjust for stacking */
+    z-index: 1; /* Ensure logo stays above pseudo elements */
+  }
+  header h1 {
+    margin: 20px 0 10px 0;
+    font-size: 36px;
+    text-transform: uppercase; /* Convert text to uppercase */
+    letter-spacing: 2px; /* Spacing between letters */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Text shadow for depth */
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+    position: relative; /* Adjust for stacking */
+    z-index: 1; /* Ensure text stays above pseudo elements */
+    cursor: pointer; /* Change cursor to pointer on hoverable element */
+  }
+  header h1:hover {
+    transform: scale(1.05); /* Scale up on hover */
+  }
+  header p {
+    font-size: 18px;
+    margin: 0 0 20px 0;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+    text-shadow: 2px 2px 4px rgba(255, 255, 0, 0.8); /* Yellow text shadow */
+    cursor: pointer; /* Change cursor to pointer on hoverable element */
+  }
+  #product {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    position: relative; /* Adjust for stacking */
+    z-index: 1; /* Ensure content stays above pseudo elements */
+  }
+  #product h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Soft text shadow */
+    transition: color 0.3s; /* Smooth transition for color change */
+    cursor: pointer; /* Change cursor to pointer on hoverable element */
+  }
+  #product h1:hover {
+    color: #000; /* Darken the text color on hover */
+  }
+  #product h2 {
+    font-size: 24px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Soft text shadow */
+  }
+  #product p {
+    font-size: 16px; /* Adjust font size as per your preference */
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(255, 255, 0, 0.5); /* Yellow text shadow */
+    cursor: pointer; /* Change cursor to pointer on hoverable element */
+  }
+  #product strong {
+    font-weight: bold; /* Ensure strong text is bold */
+    text-shadow: 1px 1px 2px rgba(255, 255, 0, 0.8); /* Yellow text shadow */
+    cursor: pointer; /* Change cursor to pointer on hoverable element */
+  }
+  .product-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .product-images img {
+    width: 300px; /* Larger width */
+    height: 400px; /* Larger height */
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s; /* Add box-shadow transition */
+  }
+  .product-images img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced box-shadow on hover */
+  }
+  /* Specific styling for the second image */
+  .product-images .image2 {
+    width: 300px; /* Specific width for the second image */
+    height: 300px; /* Specific height for the second image */
+    overflow: hidden; /* Hide overflow to contain the image */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Added margin for spacing */
+    transition: transform 0.3s; /* Smooth hover effect */
+    position: relative; /* Adjust for stacking */
+  }
+  .product-images .image2:hover {
+    transform: scale(1.1); /* Scale up on hover */
+  }
+  .product-images .image2 img {
+    width: 100%; /* Full width within the container */
+    height: 100%; /* Full height within the container */
+    object-fit: cover;
+  }
+  form {
+    padding: 20px;
+    background-color: #f2f2f2;
+    margin-top: 20px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft box shadow */
+  }
+  form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft box shadow */
+  }
+  form button {
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+    position: relative; /* Adjust for stacking */
+    z-index: 1; /* Ensure button stays above pseudo elements */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft box shadow */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Text shadow for depth */
+  }
+  form button:hover {
+    background-color: #333;
+    transform: translateY(-2px); /* Lift button on hover */
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="E:\your_logo.png.jpg" alt="Logo">
+  <h1>مرحباً بكم في شركة الشهم</h1>
+  <p>أفضل ألة حلاقة في العراق</p>
+</header>
+
+<div id="product">
+ <h2>Rozia Pro</h2>
+<p>أفضل مكينة تنعيم اللحية في العراق</p>
+<div class="product-images">
+  <img src="E:\moh.jpg" alt="Product Image 1">
+  <div class="image2">
+    <img src="E:\moh2.jpg" alt="Product Image 2">
+  </div>
+  <img src="E:\moh3.jpg" alt="Product Image 3">
+  <img src="E:\moh4.jpg" alt="Product Image 4">
+  <img src="E:\moh5.jpg" alt="Product Image 5">
+  <img src="E:\moh6.jpg" alt="Product Image 6">
+</div>
+<p><strong>السعر الأصلي:</strong> 45,000 دينار عراقي</p>
+<p><strong>بعد الخصم:</strong> 30,000 دينار عراقي</p>
+</div>
+
+<form id="orderForm" action="send_order.php" method="POST">
+  <input type="text" name="name" placeholder="اسمك" required>
+  <input type="tel" name="mobile" placeholder="رقم هاتفك" required>
+  <input type="text" name="city" placeholder="مدينتك" required>
+  <button type="submit">اطلب الآن</button>
+</form>
+
+<script>
+  document.getElementById('orderForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
+    // Display the alert
+    alert("تم استلام طلبك بنجاح. شكراً لك!");
+    // Optionally, you can add code here to send the form data using AJAX or other methods
+    this.submit(); // Submit the form after showing the alert
+  });
+</script>
+
+</body>
+</html>
+
